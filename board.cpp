@@ -30,17 +30,17 @@ public:
 
 class ConsoleBoardCreator
 {
-  Board board;
+  Board *board;
 
 public:
-  ConsoleBoardCreator(Board inputted_board)
+  ConsoleBoardCreator(Board *inputted_board)
   {
     board = inputted_board;
   }
 
   string formatted_board()
   {
-    return " " + board.get_mark(1) + " | " + board.get_mark(2) + " |   \n-----------\n   |   |   \n-----------\n   |   |   ";
+    return " " + board->get_mark(1) + " | " + board->get_mark(2) + " |   \n-----------\n   |   |   \n-----------\n   |   |   ";
   }
 };
 
@@ -53,12 +53,15 @@ int main()
   board.make_move(5, 'X');
   board.make_move(7, 'O');
 
-  ConsoleBoardCreator creator = ConsoleBoardCreator(board);
-  string formatted_board = creator.formatted_board();
+  Board *board_ptr = &board;
 
+  ConsoleBoardCreator creator = ConsoleBoardCreator(board_ptr);
+  string formatted_board = creator.formatted_board();
   cout << formatted_board << endl;
 
-  board.make_move(2, 'W');
+  cout << endl;
+
+  board.make_move(1, 'W');
 
   string new_formatted_board = creator.formatted_board();
   cout << new_formatted_board << endl;
