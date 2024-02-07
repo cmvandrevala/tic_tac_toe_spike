@@ -6,7 +6,7 @@ using namespace std;
 
 class Board
 {
-  array<char, 9> board;
+  array<string, 9> board;
 
 public:
   Board()
@@ -22,9 +22,25 @@ public:
     board[cell - 1] = mark;
   }
 
-  char get_mark(int cell)
+  string get_mark(int cell)
   {
     return board[cell - 1];
+  }
+};
+
+class ConsoleBoardCreator
+{
+  Board board;
+
+public:
+  ConsoleBoardCreator(Board inputted_board)
+  {
+    board = inputted_board;
+  }
+
+  string formatted_board()
+  {
+    return " " + board.get_mark(1) + " | " + board.get_mark(2) + " |   \n-----------\n   |   |   \n-----------\n   |   |   ";
   }
 };
 
@@ -37,12 +53,15 @@ int main()
   board.make_move(5, 'X');
   board.make_move(7, 'O');
 
-  cout << "Starting the tests" << endl;
-  assert(board.get_mark(1) == 'X');
-  assert(board.get_mark(3) == 'O');
-  assert(board.get_mark(5) == 'X');
-  assert(board.get_mark(7) == 'O');
-  cout << "Tests passed" << endl;
+  ConsoleBoardCreator creator = ConsoleBoardCreator(board);
+  string formatted_board = creator.formatted_board();
+
+  cout << formatted_board << endl;
+
+  board.make_move(2, 'W');
+
+  string new_formatted_board = creator.formatted_board();
+  cout << new_formatted_board << endl;
 
   return 0;
 }
