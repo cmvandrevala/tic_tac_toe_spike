@@ -14,8 +14,12 @@ void Game::start()
   while (rules->in_progress())
   {
     cout << creator->formatted_board();
-    cout << "Which cell?" << endl;
+    cout << endl
+         << "Which cell?"
+         << endl;
     cin >> user_input;
     board->make_move(stoi(user_input), 'X');
   }
+
+  cout << creator->formatted_board() << endl;
 }
