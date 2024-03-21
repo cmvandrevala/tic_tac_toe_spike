@@ -10,8 +10,8 @@ int main()
   ConsoleBoardCreator creator = ConsoleBoardCreator(&board);
   Rules rules = Rules(&board);
 
-  HumanPlayer player_one = HumanPlayer(&board);
-  FirstSpotPlayer player_two = FirstSpotPlayer(&board);
+  FirstSpotPlayer player_one = FirstSpotPlayer(&board, 'X');
+  FirstSpotPlayer player_two = FirstSpotPlayer(&board, 'O');
 
   Game game = Game(&board, &rules, &creator, &player_one, &player_two);
   game.start();

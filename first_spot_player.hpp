@@ -6,8 +6,9 @@ class FirstSpotPlayer : public Player
 {
 private:
   Board *board;
+  char symbol;
 
 public:
-  FirstSpotPlayer(Board *inputted_board);
+  FirstSpotPlayer(Board *inputted_board, char symbol);
   void move() override;
 };

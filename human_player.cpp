@@ -8,9 +8,7 @@ HumanPlayer::HumanPlayer(Board *inputted_board)
 void HumanPlayer::move()
 {
   string user_input = "";
-  cout << endl
-       << "Which cell?"
-       << endl;
+  cout << "Which cell?";
   cin >> user_input;
   board->make_move(stoi(user_input), 'X');
 }

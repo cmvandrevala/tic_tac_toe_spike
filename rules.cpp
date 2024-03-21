@@ -19,21 +19,18 @@ bool Rules::validate_input(int input)
 
 bool Rules::in_progress()
 {
-  // We need to ask the Board object if there are any spaces still open.
-  // We also need to check if there a winner - three in a row, vertical, horizontal, or diagonal.
-  // The code below is a partial implementation where we check for three in a row in the top row.
-  if (three_in_a_row_in_the_top_row() == "_")
+  if (three_in_a_row(1, 2, 3) == "_" && three_in_a_row(4, 5, 6) == "_" && three_in_a_row(7, 8, 9) == "_" && three_in_a_row(1, 5, 9) == "_" && three_in_a_row(3, 5, 7) == "_")
   {
     return true;
   }
   return false;
 }
 
-string Rules::three_in_a_row_in_the_top_row()
+string Rules::three_in_a_row(int cell_one, int cell_two, int cell_three)
 {
-  if (board->get_mark(1) == board->get_mark(2) && board->get_mark(2) == board->get_mark(3) && board->get_mark(1) != "_")
+  if (board->get_mark(cell_one) == board->get_mark(cell_two) && board->get_mark(cell_two) == board->get_mark(cell_three) && board->get_mark(cell_one) != "_")
   {
-    return board->get_mark(1);
+    return board->get_mark(cell_one);
   }
   else
   {

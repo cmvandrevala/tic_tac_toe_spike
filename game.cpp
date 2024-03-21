@@ -15,7 +15,10 @@ void Game::start()
 {
   while (rules->in_progress())
   {
-    cout << creator->formatted_board();
+    cout << endl
+         << creator->formatted_board()
+         << endl
+         << endl;
     current_player->move();
     switch_player();
   }
