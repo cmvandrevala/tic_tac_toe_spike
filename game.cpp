@@ -13,17 +13,35 @@ Game::Game(Board *board_ptr, Rules *rules_ptr, ConsoleBoardCreator *creator_ptr,
 
 void Game::start()
 {
-  while (rules->in_progress())
-  {
-    cout << endl
-         << creator->formatted_board()
-         << endl
-         << endl;
-    current_player->move();
-    switch_player();
-  }
+  bool replay = true;
+  string user_input;
 
-  cout << creator->formatted_board() << endl;
+  while (replay)
+  {
+    while (rules->in_progress())
+    {
+      cout << endl
+           << creator->formatted_board()
+           << endl
+           << endl;
+      current_player->move();
+      switch_player();
+    }
+
+    cout << creator->formatted_board() << endl;
+
+    cout << "Do you want to play again?" << endl;
+    cin >> user_input;
+    if (user_input == "n")
+    {
+      replay = false;
+    }
+    else
+    {
+      board->create_empty_board();
+      current_player = player_one;
+    }
+  }
 }
 
 void Game::switch_player()

@@ -13,6 +13,7 @@ private:
 
 public:
   Board();
+  void create_empty_board();
   void make_move(int cell, char mark);
   string get_mark(int cell);
 };

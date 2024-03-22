@@ -6,8 +6,9 @@ class HumanPlayer : public Player
 {
 private:
   Board *board;
+  char symbol;
 
 public:
-  HumanPlayer(Board *inputted_board);
+  HumanPlayer(Board *inputted_board, char symbol);
   void move() override;
 };
