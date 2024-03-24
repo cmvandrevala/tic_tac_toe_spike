@@ -1,5 +1,6 @@
 #include "game.hpp"
 #include "human_player.hpp"
+#include "exit_menu.hpp"
 
 Game::Game(Board *board_ptr, Rules *rules_ptr, ConsoleBoardCreator *creator_ptr, Player *player_one_ptr, Player *player_two_ptr)
 {
@@ -11,37 +12,29 @@ Game::Game(Board *board_ptr, Rules *rules_ptr, ConsoleBoardCreator *creator_ptr,
   current_player = player_one;
 }
 
+void Game::reset()
+{
+  board->create_empty_board();
+  current_player = player_one;
+}
+
 void Game::start()
 {
-  bool replay = true;
   string user_input;
 
-  while (replay)
+  while (rules->in_progress())
   {
-    while (rules->in_progress())
-    {
-      cout << endl
-           << creator->formatted_board()
-           << endl
-           << endl;
-      current_player->move();
-      switch_player();
-    }
-
-    cout << creator->formatted_board() << endl;
-
-    cout << "Do you want to play again?" << endl;
-    cin >> user_input;
-    if (user_input == "n")
-    {
-      replay = false;
-    }
-    else
-    {
-      board->create_empty_board();
-      current_player = player_one;
-    }
+    cout << endl
+         << creator->formatted_board()
+         << endl
+         << endl;
+    current_player->move();
+    switch_player();
   }
+
+  cout << creator->formatted_board() << endl;
+
+  ExitMenu(this).execute();
 }
 
 void Game::switch_player()

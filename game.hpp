@@ -17,5 +17,6 @@ private:
 
 public:
   Game(Board *board_ptr, Rules *rules_ptr, ConsoleBoardCreator *creator_ptr, Player *player_one_ptr, Player *player_two_ptr);
+  void reset();
   void start();
 };
